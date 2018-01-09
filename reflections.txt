@@ -1,0 +1,20 @@
+You've learned a lot about web development so far. I want you to take a moment to write down your thoughts about web development here. Answer the following questions:
+  * What new skills have you learned?
+	
+	I've learned about the doctype's, now i know why we write them.
+	
+  * What has been easy?
+  
+	Understand the paragraph was easy.
+  
+  * What has been difficult?
+  
+	Understand the differences between HTML5 and old HTML
+  
+  * How have you used the problem solving strategies from the first project to overcome challenges so far?
+  
+	I searched the tags to confirm how to use some of them... Primarily the tags '<s>', <sup> and <hr>
+
+---
+
+Your response goes here!
