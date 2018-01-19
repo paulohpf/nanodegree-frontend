@@ -1,0 +1,43 @@
+/* add your CSS here */
+
+*{
+	font-family: 'Times New Roman', sans-serif;
+}
+
+.card{
+	width: 300px;
+	padding: 10px 10px;
+	border: 1px solid #d4d4d4;
+	box-shadow: 5px 5px #e9e9e9;
+}
+
+.card h3{
+	margin: 10px auto;
+}
+
+.card img{
+    max-width: 300px;
+    padding: 10px 0;
+}
+
+.card .info{
+	border: 1px solid #d4d4d4;
+	padding: 0 10px;
+}
+
+.card .info p:first-child{
+	font-style: italic;
+}
+
+.card .info ul{
+	padding: 0;
+}
+
+.card .info ul li{
+	text-align: left;
+	list-style: none;
+}
+
+.card .info ul li span{
+	font-weight: bold;
+}
