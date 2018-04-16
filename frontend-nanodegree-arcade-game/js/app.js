@@ -13,24 +13,20 @@ var Enemy = function(x, y , speed) {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+Enemy.prototype.update = function(dt, player) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
 
     this.x = this.x + (this.speed * dt); // Multiplico a velocidade no Eixo X
 
-    // Verifico a colisão nos inimigos
-    if (player.x < this.x + 60 && player.x + 37 > this.x && player.y < this.y + 25 && player.y + 30 > this.y) {
-        player.x = 200;
-        player.y = 380;
-    }
-
     // Quando o inimigo terminar de atravessar a tela
     if (this.x > 550) {
         this.x = -100;
         this.speed = 100 + Math.floor(Math.random()*186);
     }
+
+    player.hit(this.x, this.y);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -48,7 +44,7 @@ var Player = function(x, y, speed) {
     this.speed = speed;
     this.wins = 0;
     this.sprite = 'images/char-boy.png';
-}
+};
 
 // Não permito que o jogador atravesse o canvas
 Player.prototype.update = function() {
@@ -72,11 +68,11 @@ Player.prototype.update = function() {
         this.y = 380;
         this.x = 200;
     }
-}
+};
 
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Player.prototype.handleInput = function(tecla) {
     if (tecla == 'left') {
@@ -88,7 +84,15 @@ Player.prototype.handleInput = function(tecla) {
     } else if (tecla == 'down') {
         this.y = this.y + (this.speed + 30);
     }
-}
+};
+
+Player.prototype.hit = function(posX, posY){
+    // Verifico a colisão nos inimigos
+    if (this.x < posX + 60 && this.x + 37 > posX && this.y < posY + 25 && this.y + 30 > posY) {
+        this.x = 200;
+        this.y = 380;
+    }
+};
 
     
 // Now instantiate your objects.
