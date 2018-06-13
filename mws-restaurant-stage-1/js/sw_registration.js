@@ -1,4 +1,6 @@
+
 navigator.serviceWorker.register('./sw.js').then(function (reg) {
+
     console.log('Service worker registered.');
 
     if (!navigator.serviceWorker.controller) {
@@ -36,19 +38,19 @@ navigator.serviceWorker.addEventListener('controllerchange', function () {
     refreshing = true;
 })
 
-// Request a one-off sync:
-navigator.serviceWorker.ready.then(function (swRegistration) {    
-    return swRegistration.sync.register('myFirstSync');
-});
+    // Request a one-off sync:
+    navigator.serviceWorker.ready.then(function (swRegistration) {    
+        return swRegistration.sync.register('myFirstSync');
+    });
 
-function onOnline() {
-    console.log('Going online');
-    DBHelper.submitOfflineReviews();
-}
+    function onOnline() {
+        console.log('Going online');
+        DBHelper.submitOfflineReviews();
+    }
 
-function onOffline() {
-    console.log('Going offline');
-}
+    function onOffline() {
+        console.log('Going offline');
+    }
 
-window.addEventListener('online', onOnline);
-window.addEventListener('offline', onOffline);
+    window.addEventListener('online', onOnline);
+    window.addEventListener('offline', onOffline);
