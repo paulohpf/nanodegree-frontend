@@ -1,42 +1,43 @@
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').then(function (reg) {
 
-navigator.serviceWorker.register('./sw.js').then(function (reg) {
+        console.log('Service worker registered.');
 
-    console.log('Service worker registered.');
+        if (!navigator.serviceWorker.controller) {
+            return;
+        }
 
-    if (!navigator.serviceWorker.controller) {
-        return;
-    }
+        if (reg.waiting) {
+            navigator.serviceWorker.controller.postMessage({ action: 'skipWaiting' });
+        }
 
-    if (reg.waiting) {
-        navigator.serviceWorker.controller.postMessage({ action: 'skipWaiting' });
-    }
+        if (reg.installing) {
+            navigator.serviceWorker.addEventListener('statechange', function () {
+                if (navigator.serviceWorker.controller.state == 'installed') {
+                    navigator.serviceWorker.controller.postMessage({ action: 'skipWaiting' });
+                }
+            });
+        }
 
-    if (reg.installing) {
-        navigator.serviceWorker.addEventListener('statechange', function () {
-            if (navigator.serviceWorker.controller.state == 'installed') {
-                navigator.serviceWorker.controller.postMessage({ action: 'skipWaiting' });
-            }
+        reg.addEventListener('updatefound', function () {
+            navigator.serviceWorker.addEventListener('statechange', function () {
+                if (navigator.serviceWorker.controller.state == 'installed') {
+                    navigator.serviceWorker.controller.postMessage({ action: 'skipWaiting' });
+                }
+            });
         });
-    }
 
-    reg.addEventListener('updatefound', function () {
-        navigator.serviceWorker.addEventListener('statechange', function () {
-            if (navigator.serviceWorker.controller.state == 'installed') {
-                navigator.serviceWorker.controller.postMessage({ action: 'skipWaiting' });
-            }
-        });
+    }).catch(function (e) {
+        console.log('Service worker registration failed');
+        console.log(e);
     });
 
-}).catch(function () {
-    console.log('Service worker registration failed');
-});
-
-var refreshing;
-navigator.serviceWorker.addEventListener('controllerchange', function () {
-    if (refreshing) return;
-    window.location.reload();
-    refreshing = true;
-})
+    var refreshing;
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (refreshing) return;
+        window.location.reload();
+        refreshing = true;
+    })
 
     // Request a one-off sync:
     navigator.serviceWorker.ready.then(function (swRegistration) {    
@@ -54,3 +55,5 @@ navigator.serviceWorker.addEventListener('controllerchange', function () {
 
     window.addEventListener('online', onOnline);
     window.addEventListener('offline', onOffline);
+
+}
