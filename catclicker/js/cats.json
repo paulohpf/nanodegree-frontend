@@ -1,0 +1,32 @@
+[
+	{
+		"name": "Cocktail",
+		"image_min": "/img/cocktail_min.jpg",
+		"image_big": "/img/cocktail_big.jpg",
+		"clicks": 0
+	},
+	{
+		"name": "Dramatic",
+		"image_min": "/img/dramatic_min.jpg",
+		"image_big": "/img/dramatic_big.jpg",
+		"clicks": 0
+	},
+	{
+		"name": "Rope",
+		"image_min": "/img/rope_min.jpg",
+		"image_big": "/img/rope_big.jpg",
+		"clicks": 0
+	},
+	{
+		"name": "Upsidedown",
+		"image_min": "/img/upsidedown_min.jpg",
+		"image_big": "/img/upsidedown_big.jpg",
+		"clicks": 0
+	},
+	{
+		"name": "Xuxa",
+		"image_min": "/img/xuxa_min.jpg",
+		"image_big": "/img/xuxa_big.jpg",
+		"clicks": 0
+	}
+]
