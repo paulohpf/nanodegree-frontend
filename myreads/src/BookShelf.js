@@ -15,6 +15,7 @@ class BookShelf extends React.Component {
             {this.props.books.map(book =>
               <li key={book.id} className="book">
                 <div className="book-top">
+              {typeof book.imageLinks !== 'undefined' ? (
                   <div
                     className="book-cover"
                     style={{
@@ -23,9 +24,19 @@ class BookShelf extends React.Component {
                       backgroundImage: `url("${book.imageLinks.thumbnail}")`
                     }}
                   />
+                ) : (
+                  <div
+                    className="book-cover"
+                    style={{
+                      width: 128,
+                      height: 193,
+                      backgroundImage: `url('')`
+                    }}
+                  />
+                )}
                   <div className="book-shelf-changer">
                     <select value={book.shelf} onChange={e => this.props.onChangeShelf(book.id, e)}>
-                      <option value="none" disabled>
+                      <option value="" disabled>
                         Move to...
                       </option>
                       <option value="currentlyReading">Currently Reading</option>
